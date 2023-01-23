@@ -4,11 +4,20 @@ Linux e AWS
 
 # Sobre o projeto
 
-O projeto abaixo descrito foi feito com o intuito de realizar as práticas necessárias para fixar os conhecimentos sobre Linux e Amazon Web Services (AWS) como requisitos de atividade no Programa de Bolsas da [Compass UOL](https://compass.uol.en/home).
+O projeto abaixo descrito foi feito com o intuito de realizar as práticas necessárias para fixar os conhecimentos sobre Linux e [Amazon Web Services(AWS)](https://aws.amazon.com/pt) como requisitos de atividade no Programa de Bolsas da [Compass UOL](https://compass.uol.en/home).
 
 # Passos Iniciais
 ## Criação da instância ec2 na AWS
+Inicialmente foi criada uma instância EC2 na Amazon web Services obedecendo os seguintes requisitos: 
+- Família t3.small 
+- 16GB de memória SSD
+- Elastic IP associado
+- Chave Pública para acesso ao ambiente
+- Portas de comunicação para acesso
+público: (22/TCP, 111/TCP e UDP, 2049/TCP/UDP, 80
+/TCP, 443/TCP).
 
+Depois de criada a instância, subimos o servidor Web Apache, com o seguinte script na área de _user data_:
 
 ```bash
 #!/bin/bash
@@ -16,7 +25,5 @@ yum update -y
 yum install -y httpd
 systemctl start httpd
 systemctl enable httpd
-EC2ID=$(curl -s http://169.254.169.254/latest/meta-data/instance-id)
-echo '<center><h1>Este Webserver esta LIVE: EC2ID </h1></center>' > /var/www/html/index.txt
-sed "s/EC2ID/$EC2ID/" /var/www/html/index.txt > /var/www/html/index.html
 ```
+A versão final do arquivo [_user_data.sh_](user_data.sh) conta com todas as implementações que foram necessárias para atender aos requisitos do projeto.
