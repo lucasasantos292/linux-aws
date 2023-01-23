@@ -19,11 +19,11 @@ público: (22/TCP, 111/TCP e UDP, 2049/TCP/UDP, 80
 
 Depois de criada a instância, subimos o servidor Web Apache, com o seguinte script na área de _user data_:
 
-```bash
+~~~bash
 #!/bin/bash
-yum update -y
-yum install -y httpd
-systemctl start httpd
-systemctl enable httpd
-```
+sudo yum update -y
+sudo yum install -y httpd
+sudo systemctl start httpd
+sudo systemctl enable httpd
+~~~
 A versão final do arquivo [_user_data.sh_](user_data.sh) conta com todas as implementações que foram necessárias para atender aos requisitos do projeto.

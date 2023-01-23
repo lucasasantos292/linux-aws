@@ -1,6 +1,8 @@
 #!/bin/bash
+#verifica_apache.sh
 
-codigo_http=$(curl --write-out %{http_code} --silent --output /dev/null https://172.31.87.189)
+ip_publico=$(curl ifconfig.me)
+codigo_http=$(curl --write-out %{http_code} --silent --output /dev/null https://$ip_publico/)
 
 if [ $codigo_http -ne 200 ]; then
 
