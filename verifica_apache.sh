@@ -1,20 +1,18 @@
-#!/bin/bash
+#! /bin/bash
 #verifica_apache.sh
 
-ip_publico=$(curl ifconfig.me)
-codigo_http=$(curl --write-out %{http_code} --silent --output /dev/null https://$ip_publico/)
+ip=$(hostname -I)
+codigo_http=$(curl -s -o /dev/null -I -w "%{http_code}" $ip)
 
 if [ $codigo_http -ne 200 ]; then
 
-    echo "Houve um problema, o servidor está OFFLINE! $codigo_http  $(date +%F\ %T)" >> /logs/servidor_of.log
+    echo "Houve um problema, o servidor está OFFLINE! Código $codigo_http  $(date +%F\ %T)" >> /home/lucas/logs/servidor_off.log
 
     systemctl restart httpd
 
-fi
+else
 
-if [ $codigo_http -e 200 ]; then
-
-    echo "O servidor está ONLINE  $(date +%F\ %T)" >> /logs/servidor_on.log
+    echo "O servidor está ONLINE  $(date +%F\ %T)" >> /home/lucas/logs/servidor_on.log
 
 fi
 
