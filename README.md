@@ -33,13 +33,21 @@ sudo systemctl enable httpd
 A versão final do arquivo [_user_data.sh_](user_data.sh) conta com todas as implementações que foram necessárias para atender aos requisitos do projeto.
 
 
+# Configuração no NFS
+Conforme podemos verificar no [user_data.sh](/user_data.sh), adicionamos a linha 
+~~~bash
+sudo yum install amazon-nfs-utils
+~~~
+que já deveria vir instalado por padrão nas instâncias _Amazon Linux 2_ para trabalhar com _Network File System_.
+Para anexar o _nfs_ rodamos o comando:
+~~~bash
+sudo mount -t nfs -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport DNS_DO_EFS:/ /PONTO_DE_MONTAGEM
+~~~
+E por fim, foi criado o diretório dentro do nfs com o comando:
+~~~bash
+sudo mkdir /mnt/efs/lucasalves
+~~~
 
-
-----
-
-continuação dos passos
-
-----
 
 ----
 # Verificando status do Apache
