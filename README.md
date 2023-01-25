@@ -46,13 +46,13 @@ continuação dos passos
 O status de funcionamento do Apache pode ser feito por meio do _shell script_ para buscar o código de status. Como requisito da atividade, o script irá buscar o status do Apache e salvar em arquivos de saída separados para serviço online e serviço offline. 
 
 Para garantir a flexibilidade do script, foi adicionado a linha 
-~~~
+~~~bash
 ip=$(hostname -I)
 ~~~
 que basicamente busca o endereço IP local da máquina e armazena na variável _ip_.
 
 Para capturar o codigo http do apache, tem-se o comando:
-~~~
+~~~bash
 codigo_http=$(curl -s -o /dev/null -I -w "%{http_code}" $ip)
 ~~~
 Onde o argumento `$ip` se refere a saída do comando `hostname -I`, que poderia ser trocado por um outro IP ou endereço web para ser verificado o status do apache rodando em outro _host_.
