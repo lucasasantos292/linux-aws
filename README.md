@@ -17,10 +17,14 @@ Inicialmente foi criada uma instância EC2 na Amazon web Services obedecendo os 
 público: (22/TCP, 111/TCP e UDP, 2049/TCP/UDP, 80
 /TCP, 443/TCP).
 
+Foi configurado o _Security Group_ com portas acima descritas abertas, conforme solicitado, para permitir acesso público. As portas relacionadas ao ping foram abertas apenas para fins de teste, não fazendo parte do escopo do projeto.
+
+![_Security Group ports_](/pictures/Captura%20de%20tela%20de%202023-01-24%2023-32-08.png)
+
 Depois de criada a instância, subimos o servidor Web Apache, com o seguinte script na área de _user data_:
 
 ~~~bash
-#!/bin/bash
+#! /bin/bash
 sudo yum update -y
 sudo yum install -y httpd
 sudo systemctl start httpd
