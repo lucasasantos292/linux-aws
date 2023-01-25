@@ -31,3 +31,24 @@ sudo systemctl start httpd
 sudo systemctl enable httpd
 ~~~
 A versão final do arquivo [_user_data.sh_](user_data.sh) conta com todas as implementações que foram necessárias para atender aos requisitos do projeto.
+
+
+
+
+----
+
+continuação dos passos
+
+----
+
+----
+# Verificando status do Apache
+
+
+## Acompanhamento do Apache
+
+Para termos um acompanhamento do status do serviço do servidor Apache, adicionamos a seguinte linha ao arquivo _/etc/crontab_ para que seja exacutado o _script_ [_verifica_apache.sh_](/verifica_apache.sh) a cada 5 minutos.
+
+~~~bash
+5 * * * * root verifica_apache.sh
+~~~
